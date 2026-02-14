@@ -74,3 +74,7 @@ def register(request):
 def projects(request):
     projects = Project.objects.filter(user=request.user)
     return render(request, 'projects.html', {'projects': projects})
+
+def projects(request):
+    projects = Project.objects.filter(user=request.user)
+    return render(request, 'projects.html', {'projects': projects})
