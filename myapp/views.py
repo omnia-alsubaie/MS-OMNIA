@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .models import Project
-
+from django.contrib.auth.decorators import login_required
 
 
 def projects(request):
@@ -70,4 +70,7 @@ def register(request):
     else:
         form = UserCreationForm()
 
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'register.html', {'form': form}) 
+def projects(request):
+    projects = Project.objects.filter(user=request.user)
+    return render(request, 'projects.html', {'projects': projects})
