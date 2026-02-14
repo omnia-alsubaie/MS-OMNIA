@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}MS OMNIA{% endblock %}
+
+{% block content %}
+
+<div class="text-center py-5">
+
+    <h1 class="display-5 mb-3 fw-bold">
+      Welcome to  MS OMNIA
+    </h1>
+
+    <p class="lead text-muted mb-4">
+      A smart platform for managing your projects and analysing images using artificial intelligence
+    </p>
+
+    <div class="mt-4">
+
+        {% if user.is_authenticated %}
+
+            <div class="card card-custom mx-auto" style="max-width: 500px;">
+                <h4 class="mb-3">
+                 Welcome {{ user.username }} 👋
+                </h4>
+
+                <div class="d-grid gap-3">
+                    <a href="{% url 'projects' %}" class="btn btn-primary">
+                       View my projects
+                    </a>
+
+                    <a href="{% url 'create_project' %}" class="btn btn-outline-dark">
+                       Create a new project
+                    </a>
+
+                    <a href="{% url 'logout' %}" class="btn btn-outline-danger">
+                  Log out 
+                    </a>
+                </div>
+            </div>
+
+        {% else %}
+
+            <div class="d-grid gap-3 col-md-4 mx-auto">
+                <a href="{% url 'login' %}" class="btn btn-primary">
+                   Sign in
+                </a>
+
+                <a href="{% url 'register' %}" class="btn btn-outline-dark">
+                   Create a new account
+                </a>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+  <h1>📂 My projects </h1>
+
+    <a class="btn-create" href="{% url 'create_project' %}">
+        ➕ Create a new project
+    </a>
+
+    <hr>
+
+    {% for project in projects %}
+        <div class="project-card">
+
+            <h3>{{ project.name }}</h3>
+
+            <p>📌 The type: {{ project.project_type }}</p>
+
+            {% if project.image %}
+                <img src="{{ project.image.url }}" width="150">
+            {% endif %}
+
+            {% if project.prediction %}
+                <p class="prediction">
+                    🔢 The result: {{ project.prediction }}
+                </p>
+            {% endif %}
+
+            <div class="actions">
+                <a href="{% url 'project_detail' project.id %}"> Details </a>
+                <a href="{% url 'edit_project' project.id %}"> Modification </a>
+                <a href="{% url 'delete_project' project.id %}">delete </a>
+            </div>
+
+        </div>
+
+    {% empty %}
+        <p>you don’t have any projects right now 😢</p>
+    {% endfor %}
+
+</body>
+</html>
+{%endblock%}

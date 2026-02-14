@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .project-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 50, 0.1);
+    }
+
+    .project-title {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #0b1f3a;
+        font-weight: bold;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #0b1f3a;
+    }
+
+    .btn-navy {
+        background-color: #0b1f3a;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    .btn-navy:hover {
+        background-color: #132d52;
+    }
+</style>
+
+<div class="project-container">
+    <h2 class="project-title">Create New Project</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+     
+        <div class="mb-3">
+            <label class="form-label">Project Name</label>
+            {{ form.name }}
+        </div>
+
+     
+        <div class="mb-3">
+            <label class="form-label">Project Type</label>
+            {{ form.project_type }}
+        </div>
+
+     
+        <div class="mb-3">
+            <label class="form-label">Upload Image</label>
+            {{ form.image }}
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn-navy">
+                Save Project
+            </button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

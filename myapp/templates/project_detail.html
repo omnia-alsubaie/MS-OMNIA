@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title> details of the project </title>
+</head>
+<body>  
+
+    <h2>📄details of the project </h2>
+
+    <h3>{{ project.name }}</h3>
+
+    <p>📌The type: {{ project.project_type }}</p>
+
+    {% if project.image %}
+        <img src="{{ project.image.url }}" width="250">
+    {% endif %}
+
+    {% if project.prediction %}
+        <p style="font-size:20px; color:green;">
+            🔢 The result: {{ project.prediction }}
+        </p>
+    {% endif %}
+
+    <br><br>
+
+    <a href="{% url 'projects' %}">⬅ Back to projects </a>
+
+</body>
+</html>
