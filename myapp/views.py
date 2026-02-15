@@ -1,17 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
 from .models import Project
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-
+@login_required
 def projects(request):
-    return HttpResponse("TEST OMNIA")
+    projects = Project.objects.filter(user=request.user)
+    return render(request, 'projects.html', {'projects': projects})
 
 def index(request):
     return redirect('projects')
-
+@login_required
 def create_project(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -25,7 +24,7 @@ def create_project(request):
 
         return redirect('projects')
 
-    return render(request, 'create_project.html')
+    return render(request, 'create_project.html') 
 
 
 
